@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16540A3F252A2B360052AF00 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16540A3E252A2B360052AF00 /* Card.swift */; };
+		16540A41252A32410052AF00 /* Matcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16540A40252A32410052AF00 /* Matcher.swift */; };
 		1664A8852529F053006D2200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1664A8842529F053006D2200 /* AppDelegate.swift */; };
 		1664A8872529F053006D2200 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1664A8862529F053006D2200 /* SceneDelegate.swift */; };
 		1664A8892529F053006D2200 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1664A8882529F053006D2200 /* ViewController.swift */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16540A3E252A2B360052AF00 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		16540A40252A32410052AF00 /* Matcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matcher.swift; sourceTree = "<group>"; };
 		1664A8812529F053006D2200 /* Set.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Set.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1664A8842529F053006D2200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1664A8862529F053006D2200 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 				1664A8842529F053006D2200 /* AppDelegate.swift */,
 				1664A8862529F053006D2200 /* SceneDelegate.swift */,
 				1664A8882529F053006D2200 /* ViewController.swift */,
+				16540A3E252A2B360052AF00 /* Card.swift */,
+				16540A40252A32410052AF00 /* Matcher.swift */,
 				1664A88A2529F053006D2200 /* Main.storyboard */,
 				1664A88D2529F055006D2200 /* Assets.xcassets */,
 				1664A88F2529F055006D2200 /* LaunchScreen.storyboard */,
@@ -141,6 +147,8 @@
 				1664A8892529F053006D2200 /* ViewController.swift in Sources */,
 				1664A8852529F053006D2200 /* AppDelegate.swift in Sources */,
 				1664A8872529F053006D2200 /* SceneDelegate.swift in Sources */,
+				16540A41252A32410052AF00 /* Matcher.swift in Sources */,
+				16540A3F252A2B360052AF00 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
