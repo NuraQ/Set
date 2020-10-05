@@ -32,7 +32,7 @@ class Matcher {
             let cardIndex = selectedCards.firstIndex(of: cards[index])
             if cardIndex != nil {  selectedCards.remove(at: cardIndex! ) }
         }
-         else if !matchedCards.contains(cards[index])   {
+         else if !matchedCards.contains(cards[index]) ,selectedCards.count == 3  {
             //comparision
             let matched = checkSet(card: cards[index])
             if matched == true {
@@ -50,9 +50,11 @@ class Matcher {
   selectedCards.removeAll()
     }
     func checkSet(card: Card) -> Bool {
-            let colorCheck = Card.checkRules(first: card.color, second: selectedCards[0].color, third: selectedCards[1].color)
-            let shapeCheck = Card.checkRules(first: card.shape, second: selectedCards[0].shape, third: selectedCards[1].shape)
-            let numberCheck = Card.checkRules(first: card.number, second: selectedCards[0].number, third: selectedCards[1].number)
-            return colorCheck && shapeCheck && numberCheck
+            let colorCheck = Card.checkRules(first: selectedCards[2].color, second: selectedCards[0].color, third: selectedCards[1].color)
+            let shapeCheck = Card.checkRules(first: selectedCards[2].shape, second: selectedCards[0].shape, third: selectedCards[1].shape)
+            let numberCheck = Card.checkRules(first: selectedCards[2].number, second: selectedCards[0].number, third: selectedCards[1].number)
+            let shadeCheck = Card.checkRules(first: selectedCards[2].shading, second: selectedCards[0].shading, third: selectedCards[1].shading)
+
+            return colorCheck && shapeCheck && numberCheck && shadeCheck
     }
 }

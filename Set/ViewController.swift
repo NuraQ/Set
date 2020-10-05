@@ -114,7 +114,7 @@ class ViewController: UIViewController {
                 alpha = 1.0
             case .shaded:
                 coloring = -5.0
-                alpha = 0.5
+                alpha = 0.15
             }
             switch card.color {
             case .blue:
