@@ -8,19 +8,38 @@
 
 import Foundation
 
-struct Card{
-    var identifier: Int = 0;
+struct Card: Equatable{
     
-    private static var identifierFactory = 0
-    
-    private static func generateUniqueIdentifier() -> Int{
-    identifierFactory += 1
-    return identifierFactory
-        
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        return lhs.color == rhs.color &&
+               lhs.number == rhs.number &&
+               lhs.shading == rhs.shading &&
+               lhs.shape == rhs.shape
+
     }
-    
-    init(){
-        self.identifier = Card.generateUniqueIdentifier()
-    }
+    enum Number  : CaseIterable  { case one, two, three }
+     enum Shape   : CaseIterable { case circle, square, triangle }
+     enum Color   : CaseIterable { case red, green, blue }
+     enum Shading : CaseIterable { case quarter, half, full }
+     let number : Number
+     let shape  : Shape
+     let color  : Color
+     let shading: Shading
+
+     static let allCardsPosibilities: [Card] = {
+       var cards: [Card] = []
+       for number in Number.allCases {
+         for shape in Shape.allCases {
+           for color in Color.allCases {
+             for shading in Shading.allCases {
+               cards.append(Card(number: number, shape: shape, color: color, shading: shading))
+             }
+           }
+         }
+       }
+       return cards
+     }()
+
+   
 
 }

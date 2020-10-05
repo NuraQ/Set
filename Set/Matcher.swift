@@ -8,7 +8,26 @@
 
 import Foundation
 
-var cards = [Card]()
-var selectedCards = [Card]()
-var matchedCards = [Card]()
 
+
+class Matcher {
+    
+    private(set) var cards = [Card]()
+    var selectedCards = [Card]()
+    var matchedCards = [Card]()
+    
+    init(initialCardsNumber: Int){
+        for _ in 1...initialCardsNumber {
+            let card = Card()
+            cards.append(card)
+        }
+    }
+    
+    func chooseCard (at index: Int) {
+        if !selectedCards.contains(cards[index]),!matchedCards.contains(cards[index]){
+            selectedCards.append(cards[index])
+        }else if !matchedCards.contains(cards[index]),selectedCards.contains(cards[index]){
+            //comparision 
+        }
+    }
+}
