@@ -47,6 +47,9 @@ class ViewController: UIViewController {
         cardButtons[index].layer.borderColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
         cardButtons[index].layer.cornerRadius = 8.0
         
+        } else {
+            cardButtons[index].layer.borderWidth = 0.0
+            cardButtons[index].layer.cornerRadius = 0.0
         }
     }
     

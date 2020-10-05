@@ -29,21 +29,25 @@ class Matcher {
             print("enter")
 
             selectedCards.append(cards[index])
-        }else if !matchedCards.contains(cards[index]){
-            //comparision
-            if selectedCards.count != 0 {
-              let match = selectedCards.filter {
-                    card in return card == cards[index]
-                }
-                if match.count > 0 {
-                    print("nopeee")
-                    deselectCards()
-                } else{
-                    print(" a match")
-
-                }
-            }
+        }else if selectedCards.contains(cards[index]){
+            let cardIndex = selectedCards.firstIndex(of: cards[index])
+            (cardIndex != nil) ? selectedCards.remove(at: cardIndex! ) : nil
         }
+//         else if !matchedCards.contains(cards[index]){
+//            //comparision
+//            if selectedCards.count != 0 {
+//              let match = selectedCards.filter {
+//                    card in return card == cards[index]
+//                }
+//                if match.count > 0 {
+//                    print("nopeee")
+//                    deselectCards()
+//                } else{
+//                    print(" a match")
+//
+//                }
+//            }
+//        }
     }
     
     func deselectCards(){
