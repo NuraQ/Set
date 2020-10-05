@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         flipCount += 1
         if let cardNum = cardButtons.firstIndex(of: sender){
             game.chooseCard(at: cardNum)
-           // updateViewFromModel()
+            highlightCard(at: cardNum)
         } else {
             print("chosen card is not in card button")
         }
@@ -41,12 +41,35 @@ class ViewController: UIViewController {
                
         }
     }
+    func highlightCard (at index: Int){
+        if game.selectedCards.contains(game.cards[index]) {
+        cardButtons[index].layer.borderWidth = 3.0
+        cardButtons[index].layer.borderColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        cardButtons[index].layer.cornerRadius = 8.0
+        
+        }
+    }
     
     
     
     @IBAction func addMoreButtons(_ sender: UIButton) {
+        for _ in 0..<2 {
+            let extraButton = UIButton(frame: CGRect(x: 100,
+            y: 100,
+            width: 200,
+            height: 60));
+            extraButton.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+            extraButton.setTitle("srf", for: UIControl.State.normal)
+            extraButton.addTarget(self, action: Selector(("touchCard")), for: UIControl.Event.touchUpInside)
+          //  cardButtons.append(extraButton)
+            extraButton.setTitleColor(.systemRed, for: .normal)
+            self.view.addSubview(extraButton)
         
-    }
+        }
+        
+          //  addShapes()
+      }
+    
     
     
     func addShapes () {
