@@ -17,10 +17,10 @@ struct Card: Equatable{
                lhs.shape == rhs.shape
 
     }
-    enum Number  : CaseIterable  { case one, two, three }
-     enum Shape   : CaseIterable { case circle, square, triangle }
-     enum Color   : CaseIterable { case red, green, blue }
-     enum Shading : CaseIterable { case shaded, half, full }
+    enum Number  : CaseIterable , Equatable  { case one, two, three }
+     enum Shape   : CaseIterable , Equatable { case circle, square, triangle }
+     enum Color   : CaseIterable , Equatable{ case red, green, blue }
+     enum Shading : CaseIterable , Equatable{ case shaded, half, full }
      let number : Number
      let shape  : Shape
      let color  : Color
@@ -60,4 +60,19 @@ struct Card: Equatable{
     }
     
       
+}
+
+extension Card {
+
+    static func  allIdentical<T: Equatable>(first: (T), second:(T), third:(T) ) -> Bool {
+        return first == second && second == third && first == third
+    }
+        static func  alldifferent<T: Equatable>(first: (T), second:(T), third:(T) ) -> Bool {
+             return first != second && second != third && first != third
+         }
+    
+    static func checkRules <T: Equatable>(first: (T), second:(T), third:(T) ) -> Bool {
+        return alldifferent(first: first,second: second,third: third) || allIdentical(first: first,second: second,third: third)
+
+        }
 }

@@ -27,30 +27,32 @@ class Matcher {
     func chooseCard (at index: Int) {
         if  !selectedCards.contains(cards[index]),!matchedCards.contains(cards[index]),selectedCards.count < 3{
             print("enter")
-
             selectedCards.append(cards[index])
         }else if selectedCards.contains(cards[index]){
             let cardIndex = selectedCards.firstIndex(of: cards[index])
-            (cardIndex != nil) ? selectedCards.remove(at: cardIndex! ) : nil
+            if cardIndex != nil {  selectedCards.remove(at: cardIndex! ) }
         }
-//         else if !matchedCards.contains(cards[index]){
-//            //comparision
-//            if selectedCards.count != 0 {
-//              let match = selectedCards.filter {
-//                    card in return card == cards[index]
-//                }
-//                if match.count > 0 {
-//                    print("nopeee")
-//                    deselectCards()
-//                } else{
-//                    print(" a match")
-//
-//                }
-//            }
-//        }
+         else if !matchedCards.contains(cards[index])   {
+            //comparision
+            let matched = checkSet(card: cards[index])
+            if matched == true {
+                matchedCards.append(cards[index])
+                print("match")
+            }else{
+                print("not")
+
+            }
+            
+        }
     }
     
     func deselectCards(){
   selectedCards.removeAll()
+    }
+    func checkSet(card: Card) -> Bool {
+            let colorCheck = Card.checkRules(first: card.color, second: selectedCards[0].color, third: selectedCards[1].color)
+            let shapeCheck = Card.checkRules(first: card.shape, second: selectedCards[0].shape, third: selectedCards[1].shape)
+            let numberCheck = Card.checkRules(first: card.number, second: selectedCards[0].number, third: selectedCards[1].number)
+            return colorCheck && shapeCheck && numberCheck
     }
 }
