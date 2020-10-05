@@ -34,27 +34,38 @@ class Matcher {
         }
          else if !matchedCards.contains(cards[index]) ,selectedCards.count == 3  {
             //comparision
-            let matched = checkSet(card: cards[index])
+            let matched = checkSet()
             if matched == true {
-                matchedCards.append(cards[index])
+                for item in selectedCards {
+                    matchedCards.append(item)
+                }
                 print("match")
             }else{
                 print("not")
 
             }
-            
+            deselectCards()
+            selectedCards.append(cards[index])
         }
     }
     
     func deselectCards(){
-  selectedCards.removeAll()
+       cards = cards.filter{
+            selectedCards.contains($0)
+        }
+        selectedCards.removeAll()
+        
     }
-    func checkSet(card: Card) -> Bool {
+    func checkSet() -> Bool {
             let colorCheck = Card.checkRules(first: selectedCards[2].color, second: selectedCards[0].color, third: selectedCards[1].color)
             let shapeCheck = Card.checkRules(first: selectedCards[2].shape, second: selectedCards[0].shape, third: selectedCards[1].shape)
             let numberCheck = Card.checkRules(first: selectedCards[2].number, second: selectedCards[0].number, third: selectedCards[1].number)
             let shadeCheck = Card.checkRules(first: selectedCards[2].shading, second: selectedCards[0].shading, third: selectedCards[1].shading)
 
             return colorCheck && shapeCheck && numberCheck && shadeCheck
+    }
+    
+    func setsOnBoard () {
+        
     }
 }

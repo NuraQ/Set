@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         
     }
 
+    @IBOutlet var extraButtons: [UIButton]!
     func updateViewFromModel () {
         for _ in cardButtons.indices {
 //         let button = cardButtons[index]
@@ -56,18 +57,9 @@ class ViewController: UIViewController {
     
     
     @IBAction func addMoreButtons(_ sender: UIButton) {
+        game.setsOnBoard()
         for _ in 0..<2 {
-            let extraButton = UIButton(frame: CGRect(x: 100,
-            y: 100,
-            width: 200,
-            height: 60));
-            extraButton.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
-            extraButton.setTitle("srf", for: UIControl.State.normal)
-            extraButton.addTarget(self, action: Selector(("touchCard")), for: UIControl.Event.touchUpInside)
-          //  cardButtons.append(extraButton)
-            extraButton.setTitleColor(.systemRed, for: .normal)
-            self.view.addSubview(extraButton)
-        
+            
         }
         
           //  addShapes()
@@ -130,10 +122,13 @@ class ViewController: UIViewController {
             let attributes: [NSAttributedString.Key : Any] = [ // note: type cannot be inferred here
             .strokeWidth : coloring,
             .foregroundColor:color.withAlphaComponent(CGFloat(alpha)),
+            
            ]
             let attribText = NSAttributedString(string: title , attributes: attributes)
             button.setAttributedTitle(attribText, for: UIControl.State.normal)
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
             
+
         }
         
     }
