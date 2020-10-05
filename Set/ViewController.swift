@@ -16,7 +16,9 @@ class ViewController: UIViewController {
     var flipCount = 0;
     var shapes = [String: String]()
    
-   
+    override func viewDidLoad() {
+        addShapes()
+    }
 
     @IBOutlet var cardButtons: [UIButton]!
     
@@ -33,8 +35,8 @@ class ViewController: UIViewController {
     }
 
     func updateViewFromModel () {
-        for index in cardButtons.indices {
-         let button = cardButtons[index]
+        for _ in cardButtons.indices {
+//         let button = cardButtons[index]
         
                
         }
@@ -42,6 +44,9 @@ class ViewController: UIViewController {
     
     
     
+    @IBAction func addMoreButtons(_ sender: UIButton) {
+        
+    }
     
     
     func addShapes () {
@@ -52,10 +57,10 @@ class ViewController: UIViewController {
             var title = ""
         var alpha = 1.0
         var color: UIColor
-        for button in cardButtons {
-            let randomIndex = Int(arc4random_uniform(UInt32(designCard.allDesigns.count)))
-            let uniqueDesign  =  designCard.allDesigns[randomIndex]
-            switch  uniqueDesign.shape {
+        for buttonIndex in cardButtons.indices {
+            let button = cardButtons[buttonIndex]
+            let card = game.cards[buttonIndex]
+            switch  card.shape {
             case .circle:
                 title = shapes["circle"] ?? "?"
             case .triangle:
@@ -63,11 +68,9 @@ class ViewController: UIViewController {
             case .square:
                 title = shapes["square"] ?? "?"
 
-            default:
-               title =  "?"
                        
             }
-            switch  uniqueDesign.number {
+            switch  card.number {
                case .two:
                    title += title
                case .three:
@@ -76,16 +79,18 @@ class ViewController: UIViewController {
                   break
                                    
             }
-            switch uniqueDesign.shading {
+            switch card.shading {
             case .full :
-                coloring = -1.0
+                coloring = -5.0
+                alpha = 1.0
             case .half:
-                coloring = 0.0
-            default:
                 coloring = 5.0
+                alpha = 1.0
+            case .shaded:
+                coloring = -5.0
                 alpha = 0.5
             }
-            switch uniqueDesign.color {
+            switch card.color {
             case .blue:
                 color = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
 
@@ -97,7 +102,8 @@ class ViewController: UIViewController {
             }
             let attributes: [NSAttributedString.Key : Any] = [ // note: type cannot be inferred here
             .strokeWidth : coloring,
-            .foregroundColor:color.withAlphaComponent(CGFloat(alpha))
+            .foregroundColor:color.withAlphaComponent(CGFloat(alpha)),
+            .font: UIFont.systemFont(ofSize: 20)
            ]
             let attribText = NSAttributedString(string: title , attributes: attributes)
             button.setAttributedTitle(attribText, for: UIControl.State.normal)
