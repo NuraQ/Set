@@ -9,7 +9,6 @@
 import Foundation
 
 
-
 class Matcher {
     
     private(set) var cards = [Card]()
@@ -17,7 +16,7 @@ class Matcher {
     var matchedCards = [Card]()
     var setsOnBoard = [Card]()
     var cardsOnBoard = [Card]()
-
+    var score = 0 
     init(initialCardsNumber: Int){
         for _ in 1...initialCardsNumber {
             let card = Card()
@@ -30,8 +29,7 @@ class Matcher {
     
     func chooseCard (at index: Int) {
         if  !selectedCards.contains(cards[index]),!matchedCards.contains(cards[index]),selectedCards.count < 3{
-            print("enter")
-            selectedCards.append(cards[index])
+             selectedCards.append(cards[index])
         }else if selectedCards.contains(cards[index]){
             let cardIndex = selectedCards.firstIndex(of: cards[index])
             if cardIndex != nil {  selectedCards.remove(at: cardIndex! ) }
@@ -44,7 +42,11 @@ class Matcher {
                     matchedCards.append(item)
                 }
                 removeSetCards()
+                score += 3
+                print(score)
                 print("match")
+            }else {
+                score -= 2
             }
             selectedCards.removeAll()
            // selectedCards.append(cards[index])
@@ -86,7 +88,6 @@ class Matcher {
             let shapeCheck = Card.checkRules(first: firstCard.shape, second: secondCard.shape, third: thirdCard.shape)
             let numberCheck = Card.checkRules(first: firstCard.number, second: secondCard.number, third: thirdCard.number)
             let shadeCheck = Card.checkRules(first: firstCard.shading, second: secondCard.shading, third: thirdCard.shading)
-
             return colorCheck && shapeCheck && numberCheck && shadeCheck
     }
     

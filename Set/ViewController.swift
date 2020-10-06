@@ -13,36 +13,26 @@ struct designCard {
 class ViewController: UIViewController {
 
     lazy var game = Matcher(initialCardsNumber: cardButtons.count)
-    var flipCount = 0;
     var shapes = [String: String]()
-    var extraButtonsIndex = 0 
-    override func viewDidLoad() {
-        addShapes()
-    }
-    @IBOutlet var extraButtons: [UIButton]!
-
-    @IBOutlet var cardButtons: [UIButton]!
+    var extraButtonsIndex = 0
     
+    override func viewDidLoad() {
+        updateViewFromModel()
+    }
+    
+    @IBOutlet var extraButtons: [UIButton]!
+    @IBOutlet var cardButtons: [UIButton]!
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBAction func touchCard(_ sender: UIButton) {
-        addShapes()
-        flipCount += 1
+        updateViewFromModel()
         if let cardNum = cardButtons.firstIndex(of: sender){
             game.chooseCard(at: cardNum)
-           // highlightCard(at: cardNum)
-            addShapes()
+            updateViewFromModel()
         } else {
             print("chosen card is not in card button")
         }
-        
     }
 
-    func updateViewFromModel () {
-        for _ in cardButtons.indices {
-//         let button = cardButtons[index]
-        
-               
-        }
-    }
     func highlightCard (at index: Int){
         if game.selectedCards.contains(game.cards[index]) {
         cardButtons[index].layer.borderWidth = 3.0
@@ -67,21 +57,25 @@ class ViewController: UIViewController {
                 cardButtons.append(extraButtons[extraButtonsIndex])
                 extraButtonsIndex += 1
             }
-            addShapes()
+            updateViewFromModel()
+        } else{
+            let Alert = UIAlertController(title: "Set Game", message: "you dont need more cards", preferredStyle:  .alert)
+            let Action = UIAlertAction(title: "continue", style: .default, handler: .none)
+            Alert.addAction(Action)
+            present(Alert, animated: true, completion: nil)
         }
-     
-        
-          //  addShapes()
       }
     
     
     
-    func addShapes () {
+    func updateViewFromModel () {
+        print("score is \(game.score)")
+        scoreLabel.text = "Score: \(game.score)"
            shapes["circle"] = "●"
            shapes["triangle"] = "▲"
            shapes["square"] = "◼︎"
         var coloring = 1.0
-            var title = ""
+        var title = ""
         var alpha = 1.0
         var color: UIColor
         for buttonIndex in cardButtons.indices {
@@ -95,8 +89,6 @@ class ViewController: UIViewController {
                 title = shapes["triangle"] ?? "?"
             case .square:
                 title = shapes["square"] ?? "?"
-
-                       
             }
             switch  card.number {
                case .two:
