@@ -43,7 +43,7 @@ class ViewController: UIViewController {
 
     }
     func hideExtraButtons () {
-        for buttonIndx in 0...extraButtons.count {
+        for buttonIndx in 0..<extraButtons.count {
             if  cardButtons.contains(extraButtons[buttonIndx]) {
                 let index = cardButtons.firstIndex(of: extraButtons[buttonIndx])
                 cardButtons.remove(at: index!)
@@ -70,7 +70,7 @@ class ViewController: UIViewController {
     
     @IBAction func addMoreButtons(_ sender: UIButton) {
         
-        if cardButtons.count != 24 {
+        if cardButtons.count < 24 {
             game.setsCount()
             for _ in 0..<3 {
               extraButtons[extraButtonsIndex].backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
