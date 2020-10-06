@@ -165,7 +165,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ft-sP-iNp">
                                                 <rect key="frame" x="0.0" y="0.0" width="77.666666666666671" height="85"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="61"/>
                                                 <connections>
                                                     <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cYa-z4-cYK"/>
@@ -173,7 +173,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t7z-uM-ofe">
                                                 <rect key="frame" x="85.666666666666671" y="0.0" width="78.000000000000014" height="85"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <connections>
                                                     <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="D9u-B4-7ut"/>
@@ -181,7 +181,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVH-ql-lSf">
                                                 <rect key="frame" x="171.66666666666666" y="0.0" width="77.666666666666657" height="85"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <connections>
                                                     <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9ai-Ot-93e"/>
@@ -189,7 +189,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Rh-mg-6Ml">
                                                 <rect key="frame" x="257.33333333333331" y="0.0" width="77.666666666666686" height="85"/>
-                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <connections>
                                                     <action selector="touchCard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MJl-BN-Xom"/>
@@ -308,18 +308,18 @@
                         <outletCollection property="cardButtons" destination="EHY-Uf-cCy" collectionClass="NSMutableArray" id="Rfv-b4-sYX"/>
                         <outletCollection property="cardButtons" destination="dAa-Jn-2OO" collectionClass="NSMutableArray" id="DKO-bA-J4e"/>
                         <outletCollection property="cardButtons" destination="z9e-Ni-L5Q" collectionClass="NSMutableArray" id="kzj-cO-SiL"/>
-                        <outletCollection property="extraButtons" destination="qSO-nH-qMe" collectionClass="NSMutableArray" id="nsW-bd-Ybu"/>
-                        <outletCollection property="extraButtons" destination="2Py-OS-9Jt" collectionClass="NSMutableArray" id="UYb-Vx-Twz"/>
-                        <outletCollection property="extraButtons" destination="vkX-Nt-ZWt" collectionClass="NSMutableArray" id="ReZ-LI-dCF"/>
-                        <outletCollection property="extraButtons" destination="tOV-dd-yOZ" collectionClass="NSMutableArray" id="ugO-ff-KjU"/>
-                        <outletCollection property="extraButtons" destination="F1y-dj-7vO" collectionClass="NSMutableArray" id="VJs-RA-JV5"/>
-                        <outletCollection property="extraButtons" destination="4Hn-0u-fyx" collectionClass="NSMutableArray" id="8bD-Yf-u1a"/>
-                        <outletCollection property="extraButtons" destination="cMe-S5-lAc" collectionClass="NSMutableArray" id="6IR-Bt-lcw"/>
-                        <outletCollection property="extraButtons" destination="XFB-Tp-gKb" collectionClass="NSMutableArray" id="pMd-c6-u4f"/>
-                        <outletCollection property="extraButtons" destination="1Rh-mg-6Ml" collectionClass="NSMutableArray" id="8Z0-DF-DjR"/>
-                        <outletCollection property="extraButtons" destination="aVH-ql-lSf" collectionClass="NSMutableArray" id="fEr-aH-UnX"/>
-                        <outletCollection property="extraButtons" destination="t7z-uM-ofe" collectionClass="NSMutableArray" id="D5u-vO-t0L"/>
-                        <outletCollection property="extraButtons" destination="3ft-sP-iNp" collectionClass="NSMutableArray" id="aCB-cT-p9U"/>
+                        <outletCollection property="extraButtons" destination="3ft-sP-iNp" collectionClass="NSMutableArray" id="XeF-rS-vjQ"/>
+                        <outletCollection property="extraButtons" destination="t7z-uM-ofe" collectionClass="NSMutableArray" id="mPh-4e-igA"/>
+                        <outletCollection property="extraButtons" destination="aVH-ql-lSf" collectionClass="NSMutableArray" id="JOw-5T-zxL"/>
+                        <outletCollection property="extraButtons" destination="1Rh-mg-6Ml" collectionClass="NSMutableArray" id="fc2-l3-Rjf"/>
+                        <outletCollection property="extraButtons" destination="XFB-Tp-gKb" collectionClass="NSMutableArray" id="XXS-05-SV3"/>
+                        <outletCollection property="extraButtons" destination="cMe-S5-lAc" collectionClass="NSMutableArray" id="Nfu-09-Rr0"/>
+                        <outletCollection property="extraButtons" destination="4Hn-0u-fyx" collectionClass="NSMutableArray" id="Exk-9i-yo6"/>
+                        <outletCollection property="extraButtons" destination="F1y-dj-7vO" collectionClass="NSMutableArray" id="jBY-MI-tde"/>
+                        <outletCollection property="extraButtons" destination="tOV-dd-yOZ" collectionClass="NSMutableArray" id="JZx-My-riU"/>
+                        <outletCollection property="extraButtons" destination="vkX-Nt-ZWt" collectionClass="NSMutableArray" id="vy7-V0-kBN"/>
+                        <outletCollection property="extraButtons" destination="2Py-OS-9Jt" collectionClass="NSMutableArray" id="lwc-OT-3Ro"/>
+                        <outletCollection property="extraButtons" destination="qSO-nH-qMe" collectionClass="NSMutableArray" id="Z4U-uS-BIj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

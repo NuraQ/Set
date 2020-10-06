@@ -60,10 +60,14 @@ class ViewController: UIViewController {
     
     @IBAction func addMoreButtons(_ sender: UIButton) {
         let approved = game.setsCount()
-        if approved {
-            for _ in 0..<2 {
-                extraButtons[0].backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        if approved == true {
+            print("approved")
+            for _ in 0..<3 {
+                extraButtons[extraButtonsIndex].backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cardButtons.append(extraButtons[extraButtonsIndex])
+                extraButtonsIndex += 1
             }
+            addShapes()
         }
      
         

@@ -72,11 +72,11 @@ class Matcher {
     }
     func setsCount() -> Bool {
         if setsOnBoard.count == 0 , Card.allCardsPosibilities.count > 0 {
-            for _ in 0..<2 {
+            for _ in 0..<3 {
                 let card = Card()
                 cards.append(card)
             }
-        //    calculateSetsOnBoard()
+            calculateSetsOnBoard()
             return true
         }
         return false
