@@ -138,14 +138,6 @@
                                 <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56J-8r-7la">
-                                <rect key="frame" x="20" y="708" width="65" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="ResetGame">
-                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Z7-Xl-DUG">
                                 <rect key="frame" x="298" y="722" width="52" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -273,15 +265,23 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56J-8r-7la">
+                                <rect key="frame" x="16" y="708" width="90" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="ResetGame">
+                                    <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6Z7-Xl-DUG" secondAttribute="trailing" constant="25" id="05M-aK-oFl"/>
                             <constraint firstItem="56J-8r-7la" firstAttribute="bottom" secondItem="kcL-xu-cp8" secondAttribute="bottom" id="6L4-OT-TdX"/>
-                            <constraint firstItem="kVG-bO-khq" firstAttribute="leading" secondItem="56J-8r-7la" secondAttribute="leading" id="8Rm-hP-1Rh"/>
+                            <constraint firstItem="kVG-bO-khq" firstAttribute="leading" secondItem="56J-8r-7la" secondAttribute="leading" constant="4" id="8Rm-hP-1Rh"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="K2U-H4-Xcb" secondAttribute="trailing" constant="20" id="Dqn-sM-9cJ"/>
                             <constraint firstItem="6Z7-Xl-DUG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="298" id="EaG-Af-pUC"/>
-                            <constraint firstItem="kcL-xu-cp8" firstAttribute="leading" secondItem="56J-8r-7la" secondAttribute="trailing" constant="50.5" id="Kmp-ul-P5i"/>
+                            <constraint firstItem="kcL-xu-cp8" firstAttribute="leading" secondItem="56J-8r-7la" secondAttribute="trailing" constant="29.333333333333343" id="Kmp-ul-P5i"/>
                             <constraint firstItem="kVG-bO-khq" firstAttribute="top" secondItem="K2U-H4-Xcb" secondAttribute="bottom" constant="8" id="TOm-Oa-cVm"/>
                             <constraint firstItem="kcL-xu-cp8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Taa-xt-vhT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kcL-xu-cp8" secondAttribute="bottom" constant="22" id="U0k-hj-tER"/>
@@ -291,7 +291,7 @@
                             <constraint firstItem="56J-8r-7la" firstAttribute="top" secondItem="kcL-xu-cp8" secondAttribute="top" id="nUc-eD-nT5"/>
                             <constraint firstItem="K2U-H4-Xcb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="pcC-4B-g90"/>
                             <constraint firstItem="K2U-H4-Xcb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="qsL-20-vtW"/>
-                            <constraint firstItem="56J-8r-7la" firstAttribute="leading" secondItem="K2U-H4-Xcb" secondAttribute="leading" id="xRV-mH-aLW"/>
+                            <constraint firstItem="56J-8r-7la" firstAttribute="leading" secondItem="K2U-H4-Xcb" secondAttribute="leading" constant="-4" id="xRV-mH-aLW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -325,7 +325,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="132.58928571428572"/>
+            <point key="canvasLocation" x="130.40000000000001" y="132.26600985221674"/>
         </scene>
     </scenes>
 </document>
