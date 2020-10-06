@@ -13,7 +13,6 @@ struct designCard {
 class ViewController: UIViewController {
 
     lazy var game = Matcher(initialCardsNumber: cardButtons.count)
-    var shapes = [String: String]()
     var extraButtonsIndex = 0
     
     override func viewDidLoad() {
@@ -24,11 +23,13 @@ class ViewController: UIViewController {
     @IBOutlet var extraButtons: [UIButton]!
     @IBOutlet var cardButtons: [UIButton]!
     @IBOutlet weak var scoreLabel: UILabel!
+    
     @IBAction func touchCard(_ sender: UIButton) {
         updateViewFromModel()
         if let cardNum = cardButtons.firstIndex(of: sender){
             game.chooseCard(at: cardNum)
             updateViewFromModel()
+
         } else {
             print("chosen card is not in card button")
         }
@@ -47,9 +48,7 @@ class ViewController: UIViewController {
             if  cardButtons.contains(extraButtons[buttonIndx]) {
                 let index = cardButtons.firstIndex(of: extraButtons[buttonIndx])
                 cardButtons.remove(at: index!)
-                extraButtons[buttonIndx].backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                extraButtons[buttonIndx].setAttributedTitle(nil, for: .normal)
-                extraButtons[buttonIndx].setTitle("", for: UIControl.State.normal)
+                _ = extraButtons[buttonIndx].hide
             }
             else {
                 break
@@ -69,7 +68,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func addMoreButtons(_ sender: UIButton) {
-        
         if cardButtons.count < 24 {
             game.setsCount()
             for _ in 0..<3 {
@@ -78,6 +76,7 @@ class ViewController: UIViewController {
               extraButtonsIndex += 1
             }
             updateViewFromModel()
+
         }
           else{
             let Alert = UIAlertController(title: "Set Game", message: "you dont need more cards", preferredStyle:  .alert)
@@ -87,29 +86,36 @@ class ViewController: UIViewController {
         }
       }
     
+    func cleanCompletedCards() {
+        _ = game.cardsToBeCleanedIndices.map{
+            _ = cardButtons[$0!].hide
+        }
     
+    }
     
     func updateViewFromModel () {
-        print("score is \(game.score)")
         scoreLabel.text = "Score: \(game.score)"
-           shapes["circle"] = "•"
-           shapes["triangle"] = "▴"
-           shapes["square"] = "▪︎"
+
         var coloring = 1.0
         var title = ""
         var alpha = 1.0
         var color: UIColor
         for buttonIndex in cardButtons.indices {
+    
+            highlightCard(at: buttonIndex)
+            cleanCompletedCards()
+            if game.cardsToBeCleanedIndices.indices.contains(buttonIndex){
+                continue
+            }
             let button = cardButtons[buttonIndex]
             let card = game.cards[buttonIndex]
-            highlightCard(at: buttonIndex)
-            switch  card.shape {
+            switch card.shape {
             case .circle:
-                title = shapes["circle"] ?? "?"
+                title = "•"
             case .triangle:
-                title = shapes["triangle"] ?? "?"
+                title = "▴"
             case .square:
-                title = shapes["square"] ?? "?"
+                title = "▪︎"
             }
             
             switch  card.number {
@@ -151,6 +157,7 @@ class ViewController: UIViewController {
             button.setAttributedTitle(attribText, for: UIControl.State.normal)
             button.titleLabel?.adjustsFontSizeToFitWidth = true
         
+
             
 
         }
@@ -158,6 +165,16 @@ class ViewController: UIViewController {
     }
 }
 
+
+extension UIButton {
+    var hide: UIButton {
+         self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+         self.setAttributedTitle(nil, for: .normal)
+         self.setAttributedTitle(nil, for: .normal)
+         self.setTitle("", for: UIControl.State.normal)
+         return self
+    }
+}
 //@IBAction func addMoreButtons(_ sender: UIButton) {
 //  let approved = game.setsCount()
 //  if approved == true {

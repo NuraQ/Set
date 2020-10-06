@@ -11,10 +11,13 @@ import Foundation
 
 class Matcher {
     
-    private(set) var cards = [Card]()
+    var cards = [Card]()
     var selectedCards = [Card]()
     var matchedCards = [Card]()
+    //NOTE: this array is used for the extraCridet point only
     var setsOnBoard = [Card]()
+    var cardsToBeCleanedIndices = [Int?]()
+
     var score = 0
     init(initialCardsNumber: Int){
         //Card.Compute()
@@ -22,7 +25,6 @@ class Matcher {
             let card = Card()
             cards.append(card)
         }
-        
         selectedCards.reserveCapacity(3)
         //calculateSetsOnBoard()
     }
@@ -50,7 +52,6 @@ class Matcher {
                 }
                 removeSetCards()
                 score += 3
-                print(score)
                 print("match")
             }else {
                 score -= 2
@@ -64,21 +65,26 @@ class Matcher {
         let indices = selectedCards.map{
             cards.firstIndex(of: $0 )
         }
-        addThreeCards(at: indices)
+        let appended = addThreeCards(at: indices)
+        cardsToBeCleanedIndices += appended ? [] : indices
+        
+        //NOTE: THIS IS used for the extra crider point ONLY
         setsOnBoard = setsOnBoard.filter {
             selectedCards.contains($0)
         }
 
     }
     
-    func addThreeCards(at indices: [Int?]) {
+    func addThreeCards(at indices: [Int?]) -> Bool {
         if  Card.allCardsPosibilities.count > 0 {
             for ind in 0..<3 {
                 let card = Card()
                 cards.remove(at: indices[ind]!)
                 cards.insert(card, at: indices[ind]! )
             }
+            return true
         }
+        return false
     }
     
     func setsCount() {
