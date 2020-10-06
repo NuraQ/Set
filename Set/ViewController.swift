@@ -15,10 +15,11 @@ class ViewController: UIViewController {
     lazy var game = Matcher(initialCardsNumber: cardButtons.count)
     var flipCount = 0;
     var shapes = [String: String]()
-   
+    var extraButtonsIndex = 0 
     override func viewDidLoad() {
         addShapes()
     }
+    @IBOutlet var extraButtons: [UIButton]!
 
     @IBOutlet var cardButtons: [UIButton]!
     
@@ -27,14 +28,14 @@ class ViewController: UIViewController {
         flipCount += 1
         if let cardNum = cardButtons.firstIndex(of: sender){
             game.chooseCard(at: cardNum)
-            highlightCard(at: cardNum)
+           // highlightCard(at: cardNum)
+            addShapes()
         } else {
             print("chosen card is not in card button")
         }
         
     }
 
-    @IBOutlet var extraButtons: [UIButton]!
     func updateViewFromModel () {
         for _ in cardButtons.indices {
 //         let button = cardButtons[index]
@@ -52,15 +53,19 @@ class ViewController: UIViewController {
             cardButtons[index].layer.borderWidth = 0.0
             cardButtons[index].layer.cornerRadius = 0.0
         }
+   
     }
     
-    
+
     
     @IBAction func addMoreButtons(_ sender: UIButton) {
-        game.setsOnBoard()
-        for _ in 0..<2 {
-            
+        let approved = game.setsCount()
+        if approved {
+            for _ in 0..<2 {
+                extraButtons[0].backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            }
         }
+     
         
           //  addShapes()
       }
@@ -78,6 +83,7 @@ class ViewController: UIViewController {
         for buttonIndex in cardButtons.indices {
             let button = cardButtons[buttonIndex]
             let card = game.cards[buttonIndex]
+            highlightCard(at: buttonIndex)
             switch  card.shape {
             case .circle:
                 title = shapes["circle"] ?? "?"
@@ -111,7 +117,6 @@ class ViewController: UIViewController {
             switch card.color {
             case .blue:
                 color = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
-
             case .red:
                 color = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
             case .green:
