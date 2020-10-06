@@ -25,22 +25,7 @@ struct Card: Equatable{
      let shape  : Shape
      let color  : Color
      let shading: Shading
-    static var allCardsPosibilities: [Card] = {
-       var cards: [Card] = []
-       for number in Number.allCases {
-         for shape in Shape.allCases {
-           for color in Color.allCases {
-             for shading in Shading.allCases {
-               cards.append(Card(number: number, shape: shape, color: color, shading: shading))
-                
-             }
-           }
-         }
-       }
-       
-
-       return cards
-     }()
+   
 
     init(number: Number, shape: Shape, color: Color, shading: Shading ){
         self.number = number
@@ -75,4 +60,21 @@ extension Card {
         return alldifferent(first: first,second: second,third: third) || allIdentical(first: first,second: second,third: third)
 
         }
+}
+
+extension Card  {
+    static var allCardsPosibilities: [Card] = {
+          var cards: [Card] = []
+          for number in Number.allCases {
+            for shape in Shape.allCases {
+              for color in Color.allCases {
+                for shading in Shading.allCases {
+                  cards.append(Card(number: number, shape: shape, color: color, shading: shading))
+                   
+                }
+              }
+            }
+          }
+          return cards
+        }()
 }

@@ -15,18 +15,25 @@ class Matcher {
     var selectedCards = [Card]()
     var matchedCards = [Card]()
     var setsOnBoard = [Card]()
-    var cardsOnBoard = [Card]()
-    var score = 0 
+    var score = 0
     init(initialCardsNumber: Int){
+        //Card.Compute()
         for _ in 1...initialCardsNumber {
             let card = Card()
             cards.append(card)
-            cardsOnBoard.append(card)
         }
+        
         selectedCards.reserveCapacity(3)
-        calculateSetsOnBoard()
+        //calculateSetsOnBoard()
     }
     
+    func reset() {
+        score = 0
+        selectedCards.removeAll()
+        matchedCards.removeAll()
+        setsOnBoard.removeAll()
+        cards.removeAll()
+    }
     func chooseCard (at index: Int) {
         if  !selectedCards.contains(cards[index]),!matchedCards.contains(cards[index]),selectedCards.count < 3{
              selectedCards.append(cards[index])
@@ -49,7 +56,7 @@ class Matcher {
                 score -= 2
             }
             selectedCards.removeAll()
-           // selectedCards.append(cards[index])
+            selectedCards.append(cards[index])
         }
     }
     
@@ -63,6 +70,7 @@ class Matcher {
         }
 
     }
+    
     func addThreeCards(at indices: [Int?]) {
         if  Card.allCardsPosibilities.count > 0 {
             for ind in 0..<3 {
@@ -72,16 +80,14 @@ class Matcher {
             }
         }
     }
-    func setsCount() -> Bool {
-        if setsOnBoard.count == 0 , Card.allCardsPosibilities.count > 0 {
+    
+    func setsCount() {
+        if Card.allCardsPosibilities.count > 0 {
             for _ in 0..<3 {
                 let card = Card()
                 cards.append(card)
             }
-            calculateSetsOnBoard()
-            return true
         }
-        return false
     }
     func checkSet(firstCard: Card, secondCard: Card, thirdCard: Card) -> Bool {
             let colorCheck = Card.checkRules(first: firstCard.color, second: secondCard.color, third: thirdCard.color)
@@ -91,16 +97,28 @@ class Matcher {
             return colorCheck && shapeCheck && numberCheck && shadeCheck
     }
     
-    func calculateSetsOnBoard () {
-        for first in  0..<cards.count {
-            for second in  0..<cards.count {
-                for third in  0..<cards.count {
-                    if checkSet(firstCard: cards[first], secondCard: cards[second], thirdCard: cards[third]) {
-                        setsOnBoard += [cards[first],cards[second],cards[third]]
-                    }
-
-                }
-            }
-        }
-    }
+//    func calculateSetsOnBoard () {
+//        for first in  0..<cards.count {
+//            for second in  0..<cards.count {
+//                for third in  0..<cards.count {
+//                    if checkSet(firstCard: cards[first], secondCard: cards[second], thirdCard: cards[third]) {
+//                        setsOnBoard += [cards[first],cards[second],cards[third]]
+//                    }
+//
+//                }
+//            }
+//        }
+//    }
 }
+
+//func setsCount() -> Bool {
+//       if setsOnBoard.count == 0 , Card.allCardsPosibilities.count > 0 {
+//           for _ in 0..<3 {
+//               let card = Card()
+//               cards.append(card)
+//           }
+//           calculateSetsOnBoard()
+//           return true
+//       }
+//       return false
+//   }

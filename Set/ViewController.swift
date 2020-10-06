@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var extraButtonsIndex = 0
     
     override func viewDidLoad() {
+        print("cards possibilir \(Card.allCardsPosibilities.count)")
         updateViewFromModel()
     }
     
@@ -33,32 +34,52 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBAction func resetGame(_ sender: UIButton) {
+        extraButtonsIndex = 0
+        hideExtraButtons()
+        game.reset()
+        game = Matcher(initialCardsNumber: 12)
+        updateViewFromModel()
+
+    }
+    func hideExtraButtons () {
+        for buttonIndx in 0...extraButtons.count {
+            if  cardButtons.contains(extraButtons[buttonIndx]) {
+                let index = cardButtons.firstIndex(of: extraButtons[buttonIndx])
+                cardButtons.remove(at: index!)
+                extraButtons[buttonIndx].backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                extraButtons[buttonIndx].setAttributedTitle(nil, for: .normal)
+                extraButtons[buttonIndx].setTitle("", for: UIControl.State.normal)
+            }
+            else {
+                break
+            }
+        }
+    }
     func highlightCard (at index: Int){
         if game.selectedCards.contains(game.cards[index]) {
         cardButtons[index].layer.borderWidth = 3.0
         cardButtons[index].layer.borderColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
         cardButtons[index].layer.cornerRadius = 8.0
-        
         } else {
             cardButtons[index].layer.borderWidth = 0.0
             cardButtons[index].layer.cornerRadius = 0.0
         }
-   
     }
     
-
     
     @IBAction func addMoreButtons(_ sender: UIButton) {
-        let approved = game.setsCount()
-        if approved == true {
-            print("approved")
+        
+        if cardButtons.count != 24 {
+            game.setsCount()
             for _ in 0..<3 {
-                extraButtons[extraButtonsIndex].backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                cardButtons.append(extraButtons[extraButtonsIndex])
-                extraButtonsIndex += 1
+              extraButtons[extraButtonsIndex].backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+              cardButtons.append(extraButtons[extraButtonsIndex])
+              extraButtonsIndex += 1
             }
             updateViewFromModel()
-        } else{
+        }
+          else{
             let Alert = UIAlertController(title: "Set Game", message: "you dont need more cards", preferredStyle:  .alert)
             let Action = UIAlertAction(title: "continue", style: .default, handler: .none)
             Alert.addAction(Action)
@@ -71,9 +92,9 @@ class ViewController: UIViewController {
     func updateViewFromModel () {
         print("score is \(game.score)")
         scoreLabel.text = "Score: \(game.score)"
-           shapes["circle"] = "●"
-           shapes["triangle"] = "▲"
-           shapes["square"] = "◼︎"
+           shapes["circle"] = "•"
+           shapes["triangle"] = "▴"
+           shapes["square"] = "▪︎"
         var coloring = 1.0
         var title = ""
         var alpha = 1.0
@@ -90,6 +111,7 @@ class ViewController: UIViewController {
             case .square:
                 title = shapes["square"] ?? "?"
             }
+            
             switch  card.number {
                case .two:
                    title += title
@@ -97,8 +119,8 @@ class ViewController: UIViewController {
                 title += title + title
                default:
                   break
-                                   
             }
+            
             switch card.shading {
             case .full :
                 coloring = -5.0
@@ -128,9 +150,28 @@ class ViewController: UIViewController {
             let attribText = NSAttributedString(string: title , attributes: attributes)
             button.setAttributedTitle(attribText, for: UIControl.State.normal)
             button.titleLabel?.adjustsFontSizeToFitWidth = true
+        
             
 
         }
         
     }
 }
+
+//@IBAction func addMoreButtons(_ sender: UIButton) {
+//  let approved = game.setsCount()
+//  if approved == true {
+//      print("approved")
+//      for _ in 0..<3 {
+//          extraButtons[extraButtonsIndex].backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//          cardButtons.append(extraButtons[extraButtonsIndex])
+//          extraButtonsIndex += 1
+//      }
+//      updateViewFromModel()
+//  } else{
+//      let Alert = UIAlertController(title: "Set Game", message: "you dont need more cards", preferredStyle:  .alert)
+//      let Action = UIAlertAction(title: "continue", style: .default, handler: .none)
+//      Alert.addAction(Action)
+//      present(Alert, animated: true, completion: nil)
+//  }
+//}
