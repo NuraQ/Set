@@ -11,14 +11,14 @@ import Foundation
 
 class Matcher {
     
-    var cards = [Card]()
-    var selectedCards = [Card]()
-    var matchedCards = [Card]()
+    private(set) var cards = [Card]()
+    private(set) var selectedCards = [Card]()
+    private var matchedCards = [Card]()
     //NOTE: this array is used for the extraCridet point only
-    var setsOnBoard = [Card]()
-    var cardsToBeCleanedIndices = [Int?]()
+    private var setsOnBoard = [Card]()
+    private(set) var cardsToBeCleanedIndices = [Int?]()
 
-    var score = 0
+    private(set) var score = 0
     init(initialCardsNumber: Int){
         //Card.Compute()
         for _ in 1...initialCardsNumber {
@@ -34,9 +34,11 @@ class Matcher {
         selectedCards.removeAll()
         matchedCards.removeAll()
         setsOnBoard.removeAll()
+        cardsToBeCleanedIndices.removeAll()
         cards.removeAll()
         Card.allCardsPosibilities = Card.createCards()
     }
+    
     func chooseCard (at index: Int) {
         if  !selectedCards.contains(cards[index]),!matchedCards.contains(cards[index]),selectedCards.count < 3{
              selectedCards.append(cards[index])
@@ -62,7 +64,7 @@ class Matcher {
         }
     }
     
-    func removeSetCards(){
+    private func removeSetCards(){
         let indices = selectedCards.map{
             cards.firstIndex(of: $0 )
         }
@@ -76,7 +78,7 @@ class Matcher {
 
     }
     
-    func addThreeCards(at indices: [Int?]) -> Bool {
+    private func addThreeCards(at indices: [Int?]) -> Bool {
         if  Card.allCardsPosibilities.count > 0 {
             for ind in 0..<3 {
                 let card = Card()
@@ -88,7 +90,7 @@ class Matcher {
         return false
     }
     
-    func setsCount() {
+  private func setsCount() {
         if Card.allCardsPosibilities.count > 0 {
             for _ in 0..<3 {
                 let card = Card()
@@ -96,7 +98,7 @@ class Matcher {
             }
         }
     }
-    func checkSet(firstCard: Card, secondCard: Card, thirdCard: Card) -> Bool {
+   private func checkSet(firstCard: Card, secondCard: Card, thirdCard: Card) -> Bool {
             let colorCheck = Card.checkRules(first: firstCard.color, second: secondCard.color, third: thirdCard.color)
             let shapeCheck = Card.checkRules(first: firstCard.shape, second: secondCard.shape, third: thirdCard.shape)
             let numberCheck = Card.checkRules(first: firstCard.number, second: secondCard.number, third: thirdCard.number)

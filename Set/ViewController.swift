@@ -12,19 +12,18 @@ struct designCard {
 }
 class ViewController: UIViewController {
 
-    lazy var game = Matcher(initialCardsNumber: cardButtons.count)
-    var extraButtonsIndex = 0
+   private lazy var game = Matcher(initialCardsNumber: cardButtons.count)
+   private var extraButtonsIndex = 0
     
     override func viewDidLoad() {
-        print("cards possibilir \(Card.allCardsPosibilities.count)")
         updateViewFromModel()
     }
     
-    @IBOutlet var extraButtons: [UIButton]!
-    @IBOutlet var cardButtons: [UIButton]!
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet private var extraButtons: [UIButton]!
+    @IBOutlet private var cardButtons: [UIButton]!
+    @IBOutlet private weak var scoreLabel: UILabel!
     
-    @IBAction func touchCard(_ sender: UIButton) {
+    @IBAction private func touchCard(_ sender: UIButton) {
         updateViewFromModel()
         if let cardNum = cardButtons.firstIndex(of: sender){
             game.chooseCard(at: cardNum)
@@ -35,15 +34,15 @@ class ViewController: UIViewController {
         }
     }
 
-    @IBAction func resetGame(_ sender: UIButton) {
+    @IBAction private func resetGame(_ sender: UIButton) {
         extraButtonsIndex = 0
         hideExtraButtons()
         game.reset()
         game = Matcher(initialCardsNumber: 12)
         updateViewFromModel()
-
     }
-    func hideExtraButtons () {
+    
+    private func hideExtraButtons () {
         for buttonIndx in 0..<extraButtons.count {
             if  cardButtons.contains(extraButtons[buttonIndx]) {
                 let index = cardButtons.firstIndex(of: extraButtons[buttonIndx])
@@ -55,7 +54,7 @@ class ViewController: UIViewController {
             }
         }
     }
-    func highlightCard (at index: Int){
+    private func highlightCard (at index: Int){
         if game.selectedCards.contains(game.cards[index]) {
         cardButtons[index].layer.borderWidth = 3.0
         cardButtons[index].layer.borderColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
@@ -86,16 +85,14 @@ class ViewController: UIViewController {
         }
       }
     
-    func cleanCompletedCards() {
+    private func cleanCompletedCards() {
         _ = game.cardsToBeCleanedIndices.map{
             _ = cardButtons[$0!].hide
         }
     
     }
     
-    func updateViewFromModel () {
-        scoreLabel.text = "Score: \(game.score)"
-
+    private func updateViewFromModel () {
         var coloring = 1.0
         var title = ""
         var alpha = 1.0
@@ -156,10 +153,7 @@ class ViewController: UIViewController {
             let attribText = NSAttributedString(string: title , attributes: attributes)
             button.setAttributedTitle(attribText, for: UIControl.State.normal)
             button.titleLabel?.adjustsFontSizeToFitWidth = true
-        
-
             
-
         }
         
     }
@@ -169,6 +163,8 @@ class ViewController: UIViewController {
 extension UIButton {
     var hide: UIButton {
          self.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+         self.layer.borderWidth = 0.0
+         self.layer.cornerRadius = 0.0
          self.setAttributedTitle(nil, for: .normal)
          self.setAttributedTitle(nil, for: .normal)
          self.setTitle("", for: UIControl.State.normal)
