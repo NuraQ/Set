@@ -35,6 +35,7 @@ class Matcher {
         matchedCards.removeAll()
         setsOnBoard.removeAll()
         cards.removeAll()
+        Card.allCardsPosibilities = Card.createCards()
     }
     func chooseCard (at index: Int) {
         if  !selectedCards.contains(cards[index]),!matchedCards.contains(cards[index]),selectedCards.count < 3{

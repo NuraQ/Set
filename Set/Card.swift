@@ -17,6 +17,7 @@ struct Card: Equatable{
                lhs.shape == rhs.shape
 
     }
+    
     enum Number  : CaseIterable , Equatable  { case one , two, three }
      enum Shape   : CaseIterable , Equatable { case circle, square, triangle }
      enum Color   : CaseIterable , Equatable{ case red, green, blue }
@@ -25,7 +26,9 @@ struct Card: Equatable{
      let shape  : Shape
      let color  : Color
      let shading: Shading
-   
+  
+    static var allCardsPosibilities: [Card]  = createCards()
+
 
     init(number: Number, shape: Shape, color: Color, shading: Shading ){
         self.number = number
@@ -63,22 +66,20 @@ extension Card {
 }
 
 extension Card  {
-    static var allCardsPosibilities: [Card] = {
-        set {
-            var cards: [Card] = []
-            for number in Number.allCases {
-              for shape in Shape.allCases {
-                for color in Color.allCases {
-                  for shading in Shading.allCases {
-                    cards.append(Card(number: number, shape: shape, color: color, shading: shading))
-                  }
-                }
-              }
-            }
-        }
-        get {
-            return cards
-
-        }
-        
+     static func createCards() -> Array<Card> {
+         var cards = [Card]()
+         
+         for number in Card.Number.allCases {
+             for shape in Card.Shape.allCases {
+                 for shading in Card.Shading.allCases {
+                     for color in Card.Color.allCases {
+                        cards.append(Card( number: number, shape: shape, color: color, shading: shading))
+                     }
+                 }
+             }
+         }
+         
+         return cards
+     }
+     
 }
