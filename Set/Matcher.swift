@@ -19,6 +19,18 @@ class Matcher {
     private(set) var cardsToBeCleanedIndices = [Int?]()
 
     private(set) var score = 0
+    private var matched = false {
+        didSet {
+            if matched == true {
+                score += 3
+                _ = selectedCards.map { matchedCards.append($0) }
+                removeSetCards()
+            } else if matched == false {
+                score -= 2
+            }
+        }
+    }
+    
     init(initialCardsNumber: Int){
         //Card.Compute()
         for _ in 1...initialCardsNumber {
@@ -43,22 +55,13 @@ class Matcher {
         if  !selectedCards.contains(cards[index]),!matchedCards.contains(cards[index]),selectedCards.count < 3{
              selectedCards.append(cards[index])
         }else if selectedCards.contains(cards[index]){
+            //deselect if selected and touched
             let cardIndex = selectedCards.firstIndex(of: cards[index])
             if cardIndex != nil {  selectedCards.remove(at: cardIndex! ) }
         }
          else if !matchedCards.contains(cards[index]) ,selectedCards.count == 3  {
-            //comparision
-            let matched = checkSet(firstCard: selectedCards[0], secondCard: selectedCards[1], thirdCard: selectedCards[2])
-            if matched == true {
-                for item in selectedCards {
-                    matchedCards.append(item)
-                }
-                removeSetCards()
-                score += 3
-                print("match")
-            }else {
-                score -= 2
-            }
+            //Rules check
+             matched = checkSet(firstCard: selectedCards[0], secondCard: selectedCards[1], thirdCard: selectedCards[2])
             selectedCards.removeAll()
             selectedCards.append(cards[index])
         }
@@ -90,7 +93,7 @@ class Matcher {
         return false
     }
     
-  private func setsCount() {
+   func setsCount() {
         if Card.allCardsPosibilities.count > 0 {
             for _ in 0..<3 {
                 let card = Card()

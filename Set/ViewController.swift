@@ -97,6 +97,7 @@ class ViewController: UIViewController {
         var title = ""
         var alpha = 1.0
         var color: UIColor
+        scoreLabel.text = "Score: \(game.score)"
         for buttonIndex in cardButtons.indices {
     
             highlightCard(at: buttonIndex)
