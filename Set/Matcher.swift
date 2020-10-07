@@ -25,7 +25,7 @@ class Matcher {
                 score += 3
                 _ = selectedCards.map { matchedCards.append($0) }
                 removeSetCards()
-            } else if matched == false {
+            } else {
                 score -= 2
             }
         }
